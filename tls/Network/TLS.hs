@@ -229,6 +229,7 @@ module Network.TLS (
     unServerRandom,
     HandshakeMode13 (..),
     getClientCertificateChain,
+    getServerCertificateChain,
 
     -- ** Negotiated
     getNegotiatedProtocol,
@@ -354,6 +355,9 @@ type Bytes = B.ByteString
 --   both cases of full-negotiation and resumption.
 getClientCertificateChain :: Context -> IO (Maybe CertificateChain)
 getClientCertificateChain ctx = usingState_ ctx S.getClientCertificateChain
+
+getServerCertificateChain :: Context -> IO (Maybe CertificateChain)
+getServerCertificateChain ctx = usingState_ ctx S.getServerCertificateChain
 
 -- $exceptions
 --     Since 1.8.0, this library only throws exceptions of type 'TLSException'.
